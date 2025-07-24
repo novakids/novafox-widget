@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NovaFox Animation</title>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #fox-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+      border: 5px solid white;
+      background-color: #eaeaea;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    #fox {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      left: 210px;
+      top: 210px;
+      transition: left 1s ease, top 1s ease;
+    }
+
+    .message {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-family: 'Georgia', serif;
+      font-size: 14px;
+      color: #333;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="fox-container">
+    <img id="fox" src="novafox.gif" alt="NovaFox" />
+    <div class="message">Click anywhere to move the fox!</div>
+  </div>
+
+  <script>
+    const fox = document.getElementById("fox");
+    const container = document.getElementById("fox-container");
+
+    container.addEventListener("click", (e) => {
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left - 40; // center fox (80px / 2)
+      const y = e.clientY - rect.top - 40;
+      fox.style.left = `${x}px`;
+      fox.style.top = `${y}px`;
+    });
+  </script>
+</body>
+</html>
